@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D82732B-06A5-4E10-917C-7EC1FB815DBE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlackDesertLogin</RootNamespace>
+    <AssemblyName>BlackDesertLogin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\libs\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\libs\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\libs\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="Scs">
+      <HintPath>..\libs\Scs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.14.0-ALPHA40\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\MysqlS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>MysqlS.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Configurations\NetworkS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>NetworkS.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AccountDB.cs" />
+    <Compile Include="LoginServer.cs" />
+    <Compile Include="Network\Packets\Recv\ARecvPacket.cs" />
+    <Compile Include="Network\Packets\Recv\RpEnterPin.cs" />
+    <Compile Include="Network\Packets\Recv\RpLogIn.cs" />
+    <Compile Include="Network\Packets\Send\ASendPacket.cs" />
+    <Compile Include="Network\Packets\Send\SpConnectionInfo.cs" />
+    <Compile Include="Network\Packets\Send\SpLogIn.cs" />
+    <Compile Include="Network\Packets\Send\SpPinOk.cs" />
+    <Compile Include="Network\Protocol\Connection.cs" />
+    <Compile Include="Network\Protocol\Message\Message.cs" />
+    <Compile Include="Network\Protocol\OpCodes.cs" />
+    <Compile Include="Network\Protocol\WireProtocol\GameProtocol.cs" />
+    <Compile Include="Network\TcpServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configurations\ServicesConfigs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ServicesConfigs.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\GsService.cs" />
+    <Compile Include="Services\LauncherService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Configurations\MysqlS.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MysqlS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Configurations\NetworkS.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>NetworkS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Configurations\ServicesConfigs.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ServicesConfigs.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BDCommon\BDCommon.csproj">
+      <Project>{d7a053cc-63c2-4af2-b27e-bcf32c0dccb0}</Project>
+      <Name>BDCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="blackemu_ls.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

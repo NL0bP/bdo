@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{648A5DF9-572E-45FD-8CEF-55AF77BBD077}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlackDesertGame</RootNamespace>
+    <AssemblyName>BlackDesertGame</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BDCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\BDCommon\bin\Debug\BDCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\libs\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\libs\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\libs\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Scs">
+      <HintPath>..\libs\Scs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\CharacterDB.cs" />
+    <Compile Include="Engines\AdminEngine.cs" />
+    <Compile Include="GameServer.cs" />
+    <Compile Include="GameWorld.cs" />
+    <Compile Include="Handlers\ChatHandler.cs" />
+    <Compile Include="Network\Packets\PacketHandler.cs" />
+    <Compile Include="Network\Packets\Recv\ARecvPacket.cs" />
+    <Compile Include="Network\Packets\Recv\RpAuthorize.cs" />
+    <Compile Include="Network\Packets\Recv\RpChatMessage.cs" />
+    <Compile Include="Network\Packets\Recv\RpCreateCharacter.cs" />
+    <Compile Include="Network\Packets\Recv\RpEnterWorld.cs" />
+    <Compile Include="Network\Packets\Recv\RpExit.cs" />
+    <Compile Include="Network\Packets\Recv\RpMove.cs" />
+    <Compile Include="Network\Packets\Recv\RpWhisperMessage.cs" />
+    <Compile Include="Network\Packets\Send\ASendPacket.cs" />
+    <Compile Include="Network\Packets\Send\SpFailCreateCharacter.cs" />
+    <Compile Include="Network\Packets\Send\SpCharacterInfo.cs" />
+    <Compile Include="Network\Packets\Send\SpCharacterList.cs" />
+    <Compile Include="Network\Packets\Send\SpChatMessage.cs" />
+    <Compile Include="Network\Packets\Send\SpCreateCharacter.cs" />
+    <Compile Include="Network\Packets\Send\SpEnterWorldResponse.cs" />
+    <Compile Include="Network\Packets\Send\SpMove.cs" />
+    <Compile Include="Network\Packets\Send\SpUnk0BF0.cs" />
+    <Compile Include="Network\Packets\Send\SpUnk0BFD_1.cs" />
+    <Compile Include="Network\Packets\Send\SpUnk0BFD_2.cs" />
+    <Compile Include="Network\Packets\Send\SpUnk0E90.cs" />
+    <Compile Include="Network\Protocol\Connection.cs" />
+    <Compile Include="Network\Protocol\Message\Message.cs" />
+    <Compile Include="Network\Protocol\WireProtocol\GameProtocol.cs" />
+    <Compile Include="Network\TcpServer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PlayerService\PlayerService.cs" />
+    <Compile Include="Services\PlayerService\PlayerWorldService.cs" />
+    <Compile Include="Managers\Tasks\TaskManager.cs" />
+    <None Include="Scripts\Chat\CmdTest.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Services\LoginService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
